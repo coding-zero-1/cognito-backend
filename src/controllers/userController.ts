@@ -10,7 +10,11 @@ export async function clerkWebhookHandler(req: Request, res: Response) {
         .json({ msg: "Internal server error, please try again later" });
     }
     const webhook = new Webhook(process.env.CLERK_WEBHOOK_SECRET);
-    await webhook.verify(req.body, req.headers as Record<string, string>);
+    await webhook.verify(JSON.stringify(req.body), {
+      "svix-id": req.headers["svix-id"] as string,
+      "svix-timestamp": req.headers["svix-timestamp"] as string,
+      "svix-signature": req.headers["svix-signature"] as string,
+    });
     const { type, data } = req.body;
     switch (type) {
       case "user.created":
