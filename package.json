@@ -17,10 +17,12 @@
     "typescript": "^5"
   },
   "dependencies": {
+    "@clerk/express": "^1.7.50",
     "cors": "^2.8.5",
     "dotenv": "^17.2.3",
     "express": "^5.1.0",
     "jsonwebtoken": "^9.0.2",
-    "mongoose": "^8.19.4"
+    "mongoose": "^8.19.4",
+    "svix": "^1.81.0"
   }
 }
