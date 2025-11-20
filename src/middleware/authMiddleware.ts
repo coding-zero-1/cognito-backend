@@ -1,7 +1,7 @@
 import jwt from 'jsonwebtoken';
 import type { Request, Response, NextFunction } from 'express';
 
-const authUser = async (req: Request, res: Response, next: NextFunction) => {
+const authMiddleware = async (req: Request, res: Response, next: NextFunction) => {
     try {
         const token = req.headers.token;
         if (!token) {
@@ -24,4 +24,4 @@ const authUser = async (req: Request, res: Response, next: NextFunction) => {
     }
 }
 
-export default authUser;
+export default authMiddleware;
