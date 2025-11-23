@@ -3,20 +3,20 @@ import streamifier from "streamifier";
 
 // Helper function to upload an image buffer to Cloudinary
 function uploadToCloudinary(
-  buffer: Buffer,
+  buffer: Buffer, // get the buffer from multer (req.file.buffer)
   folder = "posts"
 ): Promise<UploadApiResponse> {
   return new Promise((resolve, reject) => {
     const uploadStream = v2.uploader.upload_stream(
       {
-        folder, // Specify the folder where the image will be stored in Cloudinary
-        resource_type: "image", // Specify the resource type as an image
-        transformation: [{ quality: "auto" }, { fetch_format: "auto" }], // Optimize image quality and format
+        folder,
+        resource_type: "image",
+        transformation: [{ quality: "auto" }, { fetch_format: "auto" }],
       },
       (error, result) => {
-        if (error) return reject(error); // Reject the promise if an error occurs
-        if (!result) return reject(new Error("Cloudinary returned no result")); // Handle unexpected null result
-        resolve(result as UploadApiResponse); // Resolve the promise with the upload result
+        if (error) return reject(error);
+        if (!result) return reject(new Error("Cloudinary returned no result"));
+        resolve(result as UploadApiResponse);
       }
     );
 
