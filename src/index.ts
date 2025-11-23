@@ -6,6 +6,7 @@ import userRouter from './routes/userRouter';
 import configureCloudinary from './config/cloudinaryConfig';
 import authMiddleware from './middleware/authMiddleware';
 import cardRouter from './routes/cardRouter';
+import brainRouter from './routes/brainRouter';
 
 config();
 const app = express();
@@ -19,6 +20,7 @@ app.use(express.json());
 
 app.use("/api/v1/users",userRouter);
 app.use("/api/v1/card",authMiddleware,cardRouter)
+app.get("/brain",brainRouter);
 
 app.listen(PORT,async()=>{
     await connectToDB();
