@@ -13,7 +13,7 @@ const authMiddleware = async (req: Request, res: Response, next: NextFunction) =
         }
         // Verify the JWT token
         const decoded = jwt.decode(token as string) as { clerkId: string };
-        (req as any).clerkId = decoded?.clerkId;
+        req.clerkId = decoded?.clerkId;
         next();
     } catch (error:any) {
         console.error("Authentication error:", error);
