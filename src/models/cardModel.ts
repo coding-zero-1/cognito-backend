@@ -7,6 +7,7 @@ const cardSchema = new mongoose.Schema(
     cloudinaryId: { type: String },
     imageUrl: { type: String },
     link:{type:String},
+    type : {type:String, enum:["text","youtube","twitter","image"], default:"text", required:true},
     clerkId: { type: String, required: true, ref:"users" },
   },
   { timestamps: true }

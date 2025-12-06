@@ -36,7 +36,7 @@ export async function createCardController(req: Request, res: Response) {
     });
     return;
   }
-  const { title, description, link } = req.body;
+  const { title, description, link, type } = req.body;
   if (!title) {
     res.status(400).json({
       msg: "Title is required",
@@ -49,6 +49,7 @@ export async function createCardController(req: Request, res: Response) {
       clerkId,
       title,
       description,
+      type:"text"
     });
     res.status(201).json({
       msg: "Card created successfully",
@@ -62,6 +63,7 @@ export async function createCardController(req: Request, res: Response) {
       title,
       description,
       link,
+      type
     });
     res.status(201).json({
       msg: "Card created successfully",
@@ -78,9 +80,9 @@ export async function createCardController(req: Request, res: Response) {
         clerkId,
         title,
         description,
-        link,
         imageUrl: uploadResult.secure_url,
-        imagePublicId: uploadResult.public_id,
+        cloudinaryId: uploadResult.public_id,
+        type:"image"
       });
       res.status(201).json({
         msg: "Card created successfully with image",
